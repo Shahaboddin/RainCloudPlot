@@ -6,27 +6,28 @@ library(tidyverse)
 library(ggdist)
 library(ggthemes)
 library(readODS)
+library(viridis)
 
-# Read data from .ods file
+#Read data from .ods file
 data <- read_ods("/home/cog/Desktop/Eye_data/Total time.ods")
 
-# Extract the group names from the first row of the data
+#Extract the group names from the first row of the data
 group_names <- data[1, ]
 
-# Remove the first row from the data
+#Remove the first row from the data
 data <- data[-1, ]
 
-# Convert the data to numeric (if needed)
+#Convert the data to numeric (if needed)
 data <- data %>% mutate_all(as.numeric)
 
-# Create the raincloud plot
+# Create the raincloud plot with 'viridis' color palette
 data %>%
   gather(group, value, -1) %>%
   ggplot(aes(x = factor(group), y = value, fill = factor(group))) +
   stat_halfeye(adjust = 0.5, justification = -0.2, .width = 0, point_colour = NA) +
   geom_boxplot(width = 0.12, outlier.color = "purple", alpha = 0.5) +
   stat_dots(dotsize = 0.5, side = "left", justification = 1.1, binwidth = 0.1) +
-  scale_fill_fivethirtyeight() +
+  scale_fill_viridis_d(option = "magma") +
   theme_fivethirtyeight() +
   labs(title = "Distribution of Data by Group (Raincloud Plot)", fill = "Group") +
   coord_flip()
