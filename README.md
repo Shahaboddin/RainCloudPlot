@@ -1,6 +1,7 @@
 # RainCloudPlot
 #RainCloud Plot in RStudio
 --------------------------------------------------
+--------------------------------------------------
 library(tidyverse)
 library(ggdist)
 library(ggthemes)
@@ -30,7 +31,8 @@ data %>%
   labs(title = "Distribution of Data by Group (Raincloud Plot)", fill = "Group") +
   coord_flip()
   ---------------------------------------------------------------------------------------
-# To read an .ods file instead of an Excel file, you can use the read_ods() function from the readODS package in R. 
+  ---------------------------------------------------------------------------------------
+#To read an .ods file instead of an Excel file, you can use the read_ods() function from the readODS package in R. 
 #The read_excel() function is used to read the data from the Excel file. Replace "path/to/your/file.xlsx" with the actual path to your Excel file.
 #The first row of the data is extracted as the group names using data[1, ]. This assumes that the group names are in the first row of the Excel file.
 #The first row is then removed from the data using data <- data[-1, ].
